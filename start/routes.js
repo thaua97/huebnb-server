@@ -16,9 +16,13 @@
 
 const Route = use('Route')
 
+//rotas de autenticação.
 Route.post('/users', 'UserController.create')
 Route.post('/auth', 'AuthController.create')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+
+Route.resource('properties', 'PropertyController')
+  .apiOnly()
+  .middleware('auth')
+
+
